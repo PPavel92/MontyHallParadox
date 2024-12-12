@@ -26,7 +26,6 @@ public class Main {
             }
         }
 
-        // Выводим статистику
         System.out.println("Total games: " + totalGames);
         System.out.println("Wins: " + wins);
         System.out.println("Losses: " + losses);
@@ -35,19 +34,18 @@ public class Main {
     public static GameResult playGame() {
         // Инициализация
         Random random = new Random();
-        int carPosition = random.nextInt(3);  // Место с машиной (0, 1, 2)
-        int playerChoice = random.nextInt(3); // Выбор игрока
+        int carPosition = random.nextInt(3);
+        int playerChoice = random.nextInt(3);
 
-        // Открытие одной из дверей, за которой нет машины
         int revealedDoor;
         do {
             revealedDoor = random.nextInt(3);
         } while (revealedDoor == carPosition || revealedDoor == playerChoice);
 
-        // Выбор после того, как одна из дверей была открыта
+
         int finalChoice = playerChoice == revealedDoor ? playerChoice : 3 - playerChoice - revealedDoor;
 
-        // Проверка, победил ли игрок
+
         boolean isWin = finalChoice == carPosition;
         return new GameResult(isWin);
     }
